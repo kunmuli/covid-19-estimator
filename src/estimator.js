@@ -10,10 +10,13 @@ const covid19ImpactEstimator = (data) => {
   } else {
     timeToElapse = Math.trunc(timeToElapse * 1);
   }
+  const factor = Math.trunc(timeToElapse / 3);
+
   const impactCurrentInfected = Math.trunc(reportedCases * 10);
   const severeImpactCurrentInfected = Math.trunc(reportedCases * 50);
   // Calculation functions
-  const calculateInfectionsByRequestedTime = (infections) => Math.trunc(infections * 1024);
+  // eslint-disable-next-line max-len
+  const calculateInfectionsByRequestedTime = (currentInfections) => Math.trunc(currentInfections * 2 ** factor);
 
   const calculateSevereCasesByRequestedTime = (infections) => Math.trunc(infections * 0.15);
 
