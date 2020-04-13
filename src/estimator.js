@@ -3,12 +3,17 @@ const covid19ImpactEstimator = (data) => {
   // Normalize the periods to days
   const { periodType, reportedCases } = data;
   let { timeToElapse } = data;
-  if (periodType === 'months') {
-    timeToElapse = Math.trunc(timeToElapse * 30);
-  } else if (periodType === ' weeks') {
-    timeToElapse = Math.trunc(timeToElapse * 7);
-  } else {
-    timeToElapse = Math.trunc(timeToElapse * 1);
+  switch (periodType.trim().toLowerCase()) {
+    case 'months':
+      timeToElapse = Math.trunc(timeToElapse * 30);
+      break;
+    case 'weeks':
+      timeToElapse = Math.trunc(timeToElapse * 7);
+      break;
+    case 'days':
+      timeToElapse = Math.trunc(timeToElapse * 1);
+      break;
+    default:
   }
   const factor = Math.trunc(timeToElapse / 3);
 
