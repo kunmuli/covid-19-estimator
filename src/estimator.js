@@ -39,7 +39,7 @@ const covid19ImpactEstimator = (data) => {
       region: { avgDailyIncomeInUSD, avgDailyIncomePopulation }
     } = data;
     return Math.trunc(
-      (infections * avgDailyIncomePopulation * avgDailyIncomeInUSD) / timeToElapse
+      (infections * avgDailyIncomePopulation * avgDailyIncomeInUSD) * timeToElapse
     );
   };
   return {
