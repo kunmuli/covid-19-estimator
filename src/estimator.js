@@ -1,7 +1,7 @@
 const covid19ImpactEstimator = (data) => {
   const input = data;
   // Normalize the periods to days
-  const { periodType, reportedCases } = data;
+  const { periodType, reportedCases, population } = data;
   let { timeToElapse } = data;
   switch (periodType.trim().toLowerCase()) {
     case 'months':
@@ -39,7 +39,7 @@ const covid19ImpactEstimator = (data) => {
       region: { avgDailyIncomeInUSD, avgDailyIncomePopulation }
     } = data;
     return Math.trunc(
-      infections * avgDailyIncomePopulation * avgDailyIncomeInUSD * timeToElapse
+      (infections * (avgDailyIncomePopulation * population)) * avgDailyIncomeInUSD * timeToElapse
     );
   };
   return {
